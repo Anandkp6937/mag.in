@@ -67,7 +67,7 @@ font-family:var(--font-texts);
      color:var(--white);
     justify-content: center;
 }
-.sub input[type='text']{
+.sub input[type='email']{
      padding:7px;
      width:70%;
      border-radius:2px;
@@ -78,7 +78,7 @@ font-family:var(--font-texts);
      color:#fff;
      font-weight:300;
 }
-.sub input[type='text']:focus{
+.sub input[type='email']:focus{
      background-color:#fff;
      color:rgb(19, 11, 63);
 }
@@ -285,7 +285,7 @@ body{
      padding:1em 3em;
    }
 
-   .sub input[type='text']{
+   .sub input[type='email']{
      width:70%;
      padding:11px;
 }

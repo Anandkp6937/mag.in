@@ -3,12 +3,38 @@ let  marked=document.querySelectorAll('.marked');
 let blogWrap=document.querySelector('.blog-container-wrap');
 let lists=document.querySelectorAll('.section');
 let searchBox=document.getElementById('srch');
+let subcriber=document.getElementById('subcriber');
+let subBtn=document.querySelector('.sub-btn');
+let emailId;
 let modifiedData;
+let response;
 let state='all';
 console.log(lists);
-if(state=='all'){
-searchBox.addEventListener('input',searchBlogPost);
+function feedback(message){
+     if(message==='user already exists'){
+          alert('user already a subscriber')
+     }
+     else{
+          alert('thanku for subscribing...')
+     }
 }
+function addEmailTosubscriberList(e){
+     let postData={
+          email:subcriber.value
+     }
+     
+     fetch('https://magnetonn-in-backend.vercel.app/subscribe',{
+          method:'POST',
+          headers:{'COntent-type':'application/json'},
+          body:JSON.stringify(postData)
+     }).then(res=>res.json())
+     .then(data=>feedback(data.message))
+     .catch(err=>console.log(err));
+     subcriber.value=''
+     
+}
+subBtn.addEventListener('click',addEmailTosubscriberList);
+searchBox.addEventListener('input',searchBlogPost);
 function searchBlogPost(e){
      let keyWord=e.target.value;
      let newSortedPostsData=modifiedData.filter((word)=>word.title.toLowerCase().includes(keyWord.toLowerCase()));
