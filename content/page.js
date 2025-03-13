@@ -11,11 +11,13 @@ window.addEventListener('DOMContentLoaded',()=>{
 function navigationCreater(){
      navigationComponent.innerHTML='';
      navigationComponent.innerHTML=`<div class="page-navigation">
-     <a href="../index.html">
+     
      <div class="logo">
+     <a href="../index.html">
           <img src="../assets/mag-logo-big.png" alt="logo of magnetonn.in" >
+            </a>
      </div>
-     </a>
+   
      <div class="theme">
           <button class="theme-btn" onclick='themeChanger()'><i class="fa-solid fa-circle-half-stroke"></i></button>
      </div>
