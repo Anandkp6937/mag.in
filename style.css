@@ -101,7 +101,7 @@ font-family:var(--font-texts);
      padding:20px 10px;
      display:flex;
      align-items: center;
-     justify-content: space-around;
+     justify-content:space-around;
 }
 
 .marked{
@@ -127,7 +127,7 @@ cursor:pointer;
      padding:10px 35px;
      /* background-color:yellow; */
      margin-top:2em;
-     grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
+     grid-template-columns: repeat(auto-fit, minmax(1fr,2fr));
     
 
 }
@@ -142,6 +142,7 @@ cursor:pointer;
      border-radius:5px;
      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
      height:auto;
+     transition:0.2s ease-in-out;
 }
 .blog hr{
 border:2px solid rgba(19, 11, 63, 0.205);
@@ -169,7 +170,29 @@ display: none;
      /* color:rgb(19, 11, 63); */
      font-weight:500;
 }
+.search{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap:5px;
+     margin-top:1em;
+}
+.search input{
+     width:50%;
+}
+.search input:focus{
+ border:2px solid rgb(19, 11, 63);
+ background-color: rgb(19, 11, 63);
+ color:#fff;
+}
 
+.search input{
+     padding:1em;
+     border:2px solid rgba(19, 11, 63, 0.267);
+     font-size:.8em;
+     border-radius:20px;
+
+}
 @media screen and (max-width:460px){
      body{
           font-size:12px;
@@ -195,14 +218,14 @@ display: none;
           font-size:17px;
      }
      .blog-container-wrap {
-       
+       grid-template-columns:repeat(2,1fr);
      }
      .desc{
           padding:15px;
      }
-     .blog{
-       width:80%;   
-     }
+     /* .blog{
+       width:50%;
+     } */
      .sub{
           width:90%;
      }
@@ -232,6 +255,13 @@ display: none;
           grid-template-columns:repeat(2,1fr);
           padding:0em 1.5em;
         }
+        .catogary-list{
+          justify-content:flex-start;
+          padding-left:3em;
+        }
+        .search input{
+          width:30%;
+        }
 
 }
 @media screen and (min-width:1200px){
@@ -251,7 +281,7 @@ body{
 }
 
    .blog-container-wrap{
-     grid-template-columns:repeat(4,1fr);
+     grid-template-columns:repeat(3,1fr);
      padding:1em 3em;
    }
 
@@ -269,4 +299,11 @@ body{
 .blog{
      padding:30px;
 }
+.catogary-list{
+     justify-content:flex-start;
+     padding-left:3em;
+   }
+   .search input{
+     width:30%;
+   }
 }

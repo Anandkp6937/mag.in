@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
 :root{
      --font-main-heading:"IBM Plex Sans", sans-serif;
      --font-texts:"Source Sans 3", sans-serif;
+     --logo-font:"Ubuntu Sans", sans-serif;
      --white:#fff;
      --black:#000;
      --link:rgb(11, 11, 151);
@@ -13,6 +15,7 @@ body{
 }
 a,li,ul{
      text-decoration:none;
+     list-style: none;
 }
 .page-navigation{
      /* background-color:yellow; */
@@ -26,7 +29,7 @@ a,li,ul{
      background-color:#fff;
      padding:5px 10px;
      border-radius:3px;
-     cursor:pointer;
+   
 }
 .logo img ,.image-container img{
      width:100%;
@@ -69,6 +72,49 @@ a,li,ul{
 .image-container img{
      border-radius:10px;
 }
+.footer{
+     margin:0;
+     padding:0;
+     margin-top:2em;
+     background:rgb(4, 4, 56);
+     color:#fff;
+     padding:2em;
+     border-radius:10px;
+     font-size:1em;
+     display: flex;
+     flex-direction: column;
+     gap:.5em;
+}
+.Flogo{
+     font-weight:730;
+     font-size:1.3em;
+     font-family:var(--logo-font);
+     align-self: flex-end;
+}
+.fquote{
+     padding: 1em 0em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width:100%;
+     /* font-weight:bold; */
+}
+.connect a{
+     color:#fff;
+}
+.connect{
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+}
+.connect ul{
+     display: flex;
+     gap:15px;
+     margin-left:-2em;
+}
+.copyright{
+     opacity:0.7;
+}
 
 @media screen and (max-width:480px) {
      body{
@@ -104,6 +150,7 @@ body{
 }
 .logo{
      width:28%;
+     cursor:pointer;
 }
 .theme{
      margin-right:5em;
@@ -122,6 +169,7 @@ body{
      }
      .logo{
           width:15%;
+          cursor:pointer;
      }
      .image-container{
           width:40%;
