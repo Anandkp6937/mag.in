@@ -5,17 +5,45 @@ let lists=document.querySelectorAll('.section');
 let searchBox=document.getElementById('srch');
 let subcriber=document.getElementById('subcriber');
 let subBtn=document.querySelector('.sub-btn');
+let modal=document.querySelector('.thanku-modal');
+let userInfo=document.querySelector('.userInfo');
 let emailId;
 let modifiedData;
 let response;
 let state='all';
 console.log(lists);
+function removeModal(){
+     modal.style.transition='opacity 0.4s ease, transform 0.4s ease';
+     modal.style.transform='translate(-50%, -50%) scale(1)';
+     modal.style.opacity=0;
+     modal.style.visibility='hidden';
+     userInfo.innerText='';
+}
+
+function showModalCustom(message){
+     modal.style.transform='translate(-50%, -50%) scale(1)';
+     modal.style.opacity=1;
+     modal.style.visibility='visible';
+if(message==='exist'){
+     userInfo.innerText='';
+     userInfo.innerText='You are already a subscriber  ❤️'
+}
+else{
+     userInfo.innerText='';
+     userInfo.innerText=' ❤️ Thanku for subscribing to Magnetonn.in'
+}
+setTimeout(()=>{
+     removeModal();
+},3000)
+
+}
+
 function feedback(message){
      if(message==='user already exists'){
-          alert('user already a subscriber')
+          showModalCustom('exist');
      }
      else{
-          alert('thanku for subscribing...')
+          showModalCustom('new');
      }
 }
 function addEmailTosubscriberList(e){
@@ -30,6 +58,7 @@ function addEmailTosubscriberList(e){
      }).then(res=>res.json())
      .then(data=>feedback(data.message))
      .catch(err=>console.log(err));
+   
      subcriber.value=''
      
 }
