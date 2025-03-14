@@ -53,12 +53,11 @@ function addEmailTosubscriberList(e){
      
      fetch('https://magnetonn-in-backend.vercel.app/subscribe',{
           method:'POST',
-          headers:{'COntent-type':'application/json'},
+          headers:{'Content-type':'application/json'},
           body:JSON.stringify(postData)
      }).then(res=>res.json())
      .then(data=>feedback(data.message))
      .catch(err=>console.log(err));
-   
      subcriber.value=''
      
 }
@@ -111,9 +110,11 @@ function spiltDate(dates){
 function createPostCard(arr){
      blogWrap.innerHTML ='';
    arr.forEach((data)=>{
+     console.log(data);
+     
      blogWrap.innerHTML +=`<div class="blog">
                <div class="blog-img">
-                    <img src="thumbnail/blog1.jpg" alt="" srcset="">
+                    <img src="thumbnail/${data.image_url}" alt="" srcset="">
                </div>
                <div class="blog-heading"><a href="content/${data.url}">${data.title}</a></div>
                
@@ -136,7 +137,6 @@ async function grabData(){
           datafromApi=await postData.json();
           sortPostBylatest(datafromApi)
           createPostCard(modifiedData);
-    
           
      }
      catch(err){
