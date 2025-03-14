@@ -167,7 +167,6 @@ display: none;
   
 }
 .blog-heading a{
-     /* color:rgb(19, 11, 63); */
      font-weight:500;
 }
 .search{
@@ -205,8 +204,6 @@ display: none;
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   /* transition:0.5s ease-in-out;
-   transform:translateX(-250em); */
    position: fixed;
    top: 50%;
    left: 50%;
@@ -256,9 +253,7 @@ display: none;
      .desc{
           padding:15px;
      }
-     /* .blog{
-       width:50%;
-     } */
+   
      .sub{
           width:90%;
      }
@@ -299,7 +294,7 @@ display: none;
 }
 @media screen and (min-width:1200px){
 body{
-     /* background-color: yellow; */
+     
      font-size:18px;
 }
 .logo{

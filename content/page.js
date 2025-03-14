@@ -3,11 +3,14 @@ const navigationComponent=document.querySelector('.navigationComponent')
 const themeBtn=document.querySelector('.theme-btn');
 const footer=document.querySelector('footer');
 let flag=0;
+
+// footer and navigation creator
 window.addEventListener('DOMContentLoaded',()=>{
      navigationCreater();
      footerComponent();
-
 })
+
+// navigation box generator
 function navigationCreater(){
      navigationComponent.innerHTML='';
      navigationComponent.innerHTML=`<div class="page-navigation">
@@ -24,6 +27,8 @@ function navigationCreater(){
 </div>`
    
 }
+
+// footer section generator
 function footerComponent(){
      footer.innerHTML='';
      footer.innerHTML=`<div class="Flogo">Magnetonn.in</div>
@@ -41,6 +46,8 @@ function footerComponent(){
                <div class="copyright">© 2024 Magneton.in. All Rights Reserved.</div>
           </div>`
 }
+
+// theme changeing function
 function themeChanger(){
      if(!flag){
           body.style.background='#000';

@@ -1,5 +1,5 @@
-let  catogary=document.querySelectorAll('.section');
-let  marked=document.querySelectorAll('.marked');
+let catogary=document.querySelectorAll('.section');
+let marked=document.querySelectorAll('.marked');
 let blogWrap=document.querySelector('.blog-container-wrap');
 let lists=document.querySelectorAll('.section');
 let searchBox=document.getElementById('srch');
@@ -10,8 +10,13 @@ let userInfo=document.querySelector('.userInfo');
 let emailId;
 let modifiedData;
 let response;
-let state='all';
-console.log(lists);
+
+// function callbacks based on events
+
+subBtn.addEventListener('click',addEmailTosubscriberList);
+searchBox.addEventListener('input',searchBlogPost);
+
+//function to remove the modal
 function removeModal(){
      modal.style.transition='opacity 0.4s ease, transform 0.4s ease';
      modal.style.transform='translate(-50%, -50%) scale(1)';
@@ -19,7 +24,7 @@ function removeModal(){
      modal.style.visibility='hidden';
      userInfo.innerText='';
 }
-
+// function to call modal
 function showModalCustom(message){
      modal.style.transform='translate(-50%, -50%) scale(1)';
      modal.style.opacity=1;
@@ -37,7 +42,7 @@ setTimeout(()=>{
 },3000)
 
 }
-
+// feedback clarification
 function feedback(message){
      if(message==='user already exists'){
           showModalCustom('exist');
@@ -46,6 +51,8 @@ function feedback(message){
           showModalCustom('new');
      }
 }
+
+// add email to subscriber list
 function addEmailTosubscriberList(e){
      let postData={
           email:subcriber.value
@@ -61,17 +68,22 @@ function addEmailTosubscriberList(e){
      subcriber.value=''
      
 }
-subBtn.addEventListener('click',addEmailTosubscriberList);
-searchBox.addEventListener('input',searchBlogPost);
+
+
+// search blog feature
 function searchBlogPost(e){
      let keyWord=e.target.value;
      let newSortedPostsData=modifiedData.filter((word)=>word.title.toLowerCase().includes(keyWord.toLowerCase()));
      createPostCard(newSortedPostsData); 
 
 }
+
+// sort by date function
 function sortPostBylatest(arr){
      modifiedData=arr.sort((a, b) => new Date(b.date) - new Date(a.date));
  }
+
+//  catogary wise post
 function makeCatogaryWisePost(arr,catogary)
 {    
      if(catogary!='All article'){
@@ -85,7 +97,7 @@ function makeCatogaryWisePost(arr,catogary)
 
 }
 
-
+// selection on catagory
 lists.forEach((cato,i)=>{
 cato.addEventListener('click',(e)=>{
      let data=e.target.innerText;
@@ -93,7 +105,7 @@ cato.addEventListener('click',(e)=>{
 })
 
 })
-
+//styles for catagory
 catogary.forEach((item,i)=>{    
      item.addEventListener('click',()=>{
           catogary.forEach((itm)=>itm.classList.remove('marked'));
@@ -101,17 +113,19 @@ catogary.forEach((item,i)=>{
           
      })
 })
+
+// date function
 function spiltDate(dates){
      const dateString=dates;
      const date = new Date(dateString);
      const formattedDate = date.toLocaleDateString('en-GB'); 
      return formattedDate
 }
+
+// blog card generating function
 function createPostCard(arr){
      blogWrap.innerHTML ='';
    arr.forEach((data)=>{
-     console.log(data);
-     
      blogWrap.innerHTML +=`<div class="blog">
                <div class="blog-img">
                     <img src="thumbnail/${data.image_url}" alt="" srcset="">
@@ -131,6 +145,7 @@ function createPostCard(arr){
 })
     
 }
+// fetching blod data 
 async function grabData(){
      try{
           let postData=await fetch('https://magnetonn-in-backend.vercel.app/');
