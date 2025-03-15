@@ -91,9 +91,7 @@ font-family:var(--font-texts);
      margin-left:5px;
      border-radius:2px;
 }
-.sub-btn:active{
-     transform:scale(0.8);
-}
+
 
 .catogary-list{
      margin-top:20px;
@@ -149,7 +147,7 @@ border:2px solid rgba(19, 11, 63, 0.205);
 display: none;
 }
 .blog-img{
-     width:80%;
+     width:65%;
      align-self: center;
 }
 .blog-img img{

@@ -51,9 +51,23 @@ function feedback(message){
           showModalCustom('new');
      }
 }
-
+//validate email
+function isValidEmail(email) {
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     return emailRegex.test(email);
+   }
+   
+function addStyletoBtn(){
+     subBtn.style.transform='scale(0.8)'
+     setTimeout(()=>{
+          subBtn.style.transform='scale(1)'
+     },200)
+};
 // add email to subscriber list
 function addEmailTosubscriberList(e){
+     e.preventDefault();
+    if(isValidEmail(subcriber.value)){
+     addStyletoBtn()
      let postData={
           email:subcriber.value
      }
@@ -67,6 +81,10 @@ function addEmailTosubscriberList(e){
      .catch(err=>console.log(err));
      subcriber.value=''
      
+}
+else{
+     alert('Enter a valid Email id');
+}
 }
 
 

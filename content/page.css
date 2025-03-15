@@ -43,15 +43,15 @@ a,li,ul{
 }
 .heading h2{
      font-weight:600;
-     font-size:1.5em;
+     font-size:1.8em;
      font-family:var(--font-main-heading);
 }
 .desc h3{
-     font-weight:normal;
+     font-weight:400;
      text-align:justify;
      line-height:2em;
-     font-size:1.1em;
-     opacity:0.8;
+     font-size:1.2em;
+     opacity:0.9;
 }
 .theme-btn{
      padding:.7em;
@@ -65,10 +65,15 @@ a,li,ul{
      transform:scale(0.8);
 }
 .image-container{
-     width:70%;
+     width:80%;
+     display: flex;
+     justify-content: center;
  
 }
 .image-container img{
+     width:100%;
+}
+.img{
      border-radius:10px;
 }
 .footer{
@@ -97,6 +102,13 @@ a,li,ul{
      justify-content: center;
      width:100%;
 }
+.light{
+     font-weight:normal;
+     font-size:0.8em;
+}
+.eqn{
+     font-size:1.5em;;
+}
 .connect a{
      color:#fff;
 }
@@ -113,7 +125,27 @@ a,li,ul{
 .copyright{
      opacity:0.7;
 }
-
+.diagram{
+     display: flex;
+     justify-content: center;
+     width:100%;
+}
+.diagram img{
+     width:100%;
+}
+.image-banner{
+     width:100%;
+     border-radius:10px;
+     /* background-color:#81a2aa; */
+     display: flex;
+     justify-content:center;
+     padding-bottom:2em;
+}
+.image-banner img{
+     width:50%;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Simple shadow */
+     border-radius:10px;
+}
 @media screen and (max-width:480px) {
      body{
           font-size:13px;
@@ -121,12 +153,15 @@ a,li,ul{
      .logo{
           width:50%;
      }
-     
+
+     .image-banner img{
+          width:60%;
+     }
      
 }
 @media screen and (min-width:700px) and (max-width:1024px){
      body{
-
+        
           font-size:15px;
      }
      .logo{
@@ -138,13 +173,15 @@ a,li,ul{
      .theme{
           margin-right:5em;
      }
+     .image-banner{
+          justify-content:center;
+   }
+
 }
 
 @media screen and (min-width:1024px) and (max-width:1624px){
 body{
-
      font-size:17px;
-     background-color: yellow;
 }
 .logo{
      width:28%;
