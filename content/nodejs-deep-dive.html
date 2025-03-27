@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="page.css">
+     <script src="https://kit.fontawesome.com/46df8192c4.js" crossorigin="anonymous"></script>
+     <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/apple-touch-icon.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/favicon-16x16.png">
+     <link rel="manifest" href="../assets/ico/site.webmanifest">
+     <title>Node.js- Its Core Workflow </title>
+</head>
+<body>
+     <div class="navigationComponent">
+
+     </div>
+
+   
+     <div class="container-wrap">
+          <div class="image-banner">
+               <img src="../thumbnail/node.png" alt="node js internal architecture">
+             </div>
+          <div class="heading">
+               <!-- please type heading here -->
+               <h2 class="dark"> Node.js: How It Works and Understanding Its Core Workflow.</h2>
+          </div>
+          <div class="desc">
+              <h3>The main aim of this blog is to give you a brief overview of how Node.js works and how you can understand its workflow on your own.</h3>
+              <h3>In this post, I will explore how a higher-level call in Node.js interacts with lower system-level operations and executes tasks. I will briefly touch on key components like the V8 engine, libuv, and the Node.js runtime. This is just an introduction—I will dive deeper into these topics in a future blog post. For now, my focus is on explaining how Node.js operates at a lower level.</h3>
+              <h2>Here we can take <span class=" marker highlighter">os.type()</span> function as a example to understand node's internal workflow</h2>
+              <h3><span class="marker highlighter">Before diving into the Node.js workflow, let's first understand the Node.js runtime environment in a simple and concise way.</span></h3>
+              <h2>The Node.js runtime primarily consists of three main components: the V8 engine, Node.js API bindings, and libuv.</h2>
+              <h3><span class="dark">V8 engine:&nbsp;</span>This is written in C++ and is responsible for executing JavaScript code.</h3>
+              <h3><span class="dark">Node.js API bindings:&nbsp;</span>These are implemented using a combination of JavaScript and C++, allowing interaction between JavaScript and lower-level system operations.</h3>
+              <h3><span class="dark">Libuv:&nbsp;</span>This library, written in C, handles asynchronous I/O operations and provides the event loop and thread pool that power Node.js's non-blocking behavior.</h3>
+              <h2>V8 Engine</h2>
+              <h3>V8 is Google’s open-source JavaScript engine that powers both Node.js and Google Chrome. It compiles JavaScript into machine code, enabling fast and efficient execution.</h3>
+              <h2>Key Features of V8:</h2>
+              <h3>JIT Compilation (Just-In-Time): Converts JavaScript to machine code for faster performance.</h3>
+              <h3>Garbage Collection: Manages memory automatically by reclaiming unused resources.</h3>
+              <h3>Optimized JavaScript Execution: Provides efficient handling of modern JavaScript features.</h3>
+              <h3>Coming to Libuv part</h3>
+              <h2>What is libuv?</h2>
+              <h3>libuv is a multi-platform support library written in C that handles asynchronous I/O operations in Node.js. It enables non-blocking behavior by managing tasks in the background through the event loop and thread pool.</h3>
+              <h2>Some of key Functions of libuv includes:</h2>
+              <h3>File system operations (e.g., read, write)</h3>
+              <h3>Networking (e.g., TCP/UDP sockets)</h3>
+              <h3>Timers (e.g: setTimeout, setInterval)</h3>
+              <h3>Child process management</h3>
+              <h3> DNS resolution</h3>
+              <h3>Thread pooling</h3>
+              <h3>Although JavaScript is single-threaded, libuv allows Node.js to handle multiple concurrent tasks efficiently by offloading them to the system’s background.</h3>
+              <h3>You may encounter questions like: "How is Node.js single-threaded yet non-blocking?" it is because of libuv</h3>
+              <h2>Node.js API</h2>
+              <h3>The Node.js API provides an interface to interact with system-level resources like the file system, network, and operating system processes. It is built on top of V8 Engine , libuv</h3>
+              <h2>Overall node js runtime diagram</h2>
+              <div class="dig">
+               <img src="../pictures/node0'.png" alt="node runtime image " >
+               <p>( source: internet)</p>
+              </div>
+              <h2>"So, coming to the content, if I encounter a function or program like this how can you understand what's node do underthehood?”</h2>
+              <div class="dig">
+               <img src="../pictures/node1.png" alt="simple node program for os details" >
+              </div>
+              <h2>How does it really work under the hood?</h2>
+              <h3>You might wonder why we need the require function for modules like os, but not for built-in methods like console. I'll explain that in another post. </h3>
+              <h3>For now, let's focus on how the top layer of JavaScript in Node.js interacts with system-level information.</h3>
+              <h2>Understanding Node.js APIs and How They Access System-Level Data</h2>
+              <h3>Node.js APIs like fs (file system), os (operating system), and others are exposed to JavaScript, but they rely on C++ bindings to perform low-level tasks. These APIs act as a bridge between the JavaScript environment and the underlying system.</h3>
+              <h2>JavaScript APIs (like fs, os, etc.) are located in the lib folder it is purely written in javascript.</h2>
+              <h2>C++ Core (which interacts with system-level resources) is located in the src folder.</h2>
+              <h3>The os module we used here is a example of  Node.js API.</h3>
+              <h3>This is the code base of node js <a href="https://github.com/nodejs/node" target="_blank">Source code</a></h3>
+              <h3>Node.js APIs are located in the lib folder inside node repo , and if you navigate to it, you'll find a file called os.js</h3>
+              <h3>This is the os.js file. inside it will have the type() function which we called in programme.To find the type() function, we can search within the file using Ctrl + F and look for the keyword 'type'. Upon doing so, we encounter the function.</h3>
+              <h3>From examining the codebase, we found that the type() function is implemented by calling the getOSType function. This is defined in the module.exports object as follows</h3>
+              <div class="dig">
+               <img src="../pictures/node2.png" alt="simple node program  os type() details" >
+              </div>
+              <h2>So, we found that the type() function in the codebase is mapped to the getOSType function. Upon inspecting the getOSType function in the file, we encountered the following code:</h2>
+    
+
+              <div class="dig">
+               <img src="../pictures/node3.png" alt="simple node program  os type() " >
+          </div>
+              <h3>Upon searching the codebase again, we encountered the following code snippet:</h3>
+              <div class="dig">
+               <img  src="../pictures/node4.png" alt="simple node program  os type() " >
+              </div>
+              <h3>We found that the type value comes from the _getOSInformation() </h3>
+              <h3>Here, the type value is extracted from the result of _getOSInformation()</h3>
+              <h2>From this, we searched the codebase further and found the following object, which reveals that _getOSInformation() is imported from the internal bindings</h2>
+              <div class="dig">
+               <img src="../pictures/node5.png" alt="simple node program  os type() " >
+              </div>
+              <h3>(note: i just commented other to focus on the _getOSInformation() )</h3>
+              <h3>In the internalBinding('os') object, the JavaScript getOSInformation method is mapped to the C++ function _getOSInformation. This connection allows Node.js to access low-level system information by bridging between JavaScript and the C++ implementation.
+          </h3>
+          <h3>This indicates that _getOSInformation() is accessed through internalBinding('os'), which connects to the C++ side of Node.js</h3>
+          <h3>To trace the C++ implementation, we navigate to the src folder where Node.js' core bindings are located. In this case, we look for node_os.cc, as .cc files typically contain the main logic. There may also be corresponding .h (header) files that define function declarations.</h3>
+          <div class="italic">
+
+          
+          <h2>Pro Tip:</h2>
+         <h3> Whenever internal bindings are called in Node.js, they typically invoke C++ functions to access low-level system operations. These bindings act as a bridge between JavaScript and system-level APIs. To understand how a particular module works, you can explore the src directory in the Node.js codebase. For instance, OS-related functionality is usually handled in the node_os.cc file, while file system operations are implemented in node_fs.cc. This naming pattern applies mostly to other core modules as well. By tracing these files, you can see how Node.js interacts with the underlying system through libuv and C++ bindings, offering insight into its internal workflow.</h3>
+          <h3>ie in short</h3>
+          <h3>For OS-related operations, check the node_os.cc file.</h3>
+          <h3>For File System (fs) operations, check the node_fs.cc file</h3>
+          <h3>Follow a similar pattern for other modules by searching the src directory for corresponding files.</h3>
+          <h3>This approach helps trace how Node.js interacts with the underlying system via libuv and C++ bindings.</h3>
+     </div>
+     <h3>Go to the node_os.cc file and search for getOSInformation</h3>
+     
+     <h3>From there, we encounter the code:</h3>
+     <div class="dig">
+          <img src="../pictures/node6.png" alt="simple node program  os type() " >
+         </div>
+         <h3>by further searching we got the matching</h3>
+         <h3><span class=" marker highlighter">This indicates that the getOSInformation method in JavaScript is mapped to the GetOSInformation function in C++.</span></h3>
+         <h3>From this, we understand that getOSInformation in JavaScript is defined and linked to the GetOSInformation function in this C++ file.
+          code base is given below
+         </h3>
+
+
+         <div class="dig">
+          <img src="../pictures/node7.png" alt="simple node program  os type() " >
+         </div>
+         <h3>Here, <span class="highlighter">uv_os_uname</span> is the libuv function responsible for OS-related functionality. By researching, I found that its implementation is located in the core.c file within the libuv src directory.
+     </h3>
+     <h3>Libuv is an external library and not a part of Node.js core. Its source code can be found in the official GitHub repository.</h3>
+     <h3>The source code of libuv <a href="http://https://github.com/libuv/libuv">Libuv</a></h3>
+     <h3>The provided code for the uv_os_uname function in libuv is responsible for retrieving system information such as the OS name, release version, and machine architecture</h3>
+     <div class="dig">
+          <img src="../pictures/node8.png" alt="simple node program  os type() " >
+         </div>
+
+         <h3>It is the low-level system program implemented with the help of libuv.</h3>
+         <h3>For Windows and Unix, different libuv functions are used due to architectural differences. These functions are found in the libuv/src directory, which contains separate folders for Windows and Unix. When the C++ code calls a function, it is routed to the appropriate folder based on the operating system</h3>
+
+          <h2>I don't force you to understand every single line of code, but rather to grasp how these work in Node.js from a deeper perspective. Focus on understanding the mechanism of these modules with respect to Node.js, Node APIs, and libuv, as explained above.
+          <h3>So, I have explained how you can explore the real Node.js codebase. It may feel challenging at first, but with some effort and practice, you can navigate and understand it easily</h3>
+          <h3><span class=" marker highlighter">Hold on—I will create a concise diagram and a summary section that you can refer to after going through these concepts.</span></h3>
+          
+          <h2>Concise diagram and  Summary section</h2>
+          <div class="dig">
+               <img src="../pictures/nodejs-low-level-work-flow.png" alt="node js work flow of typical os module with libuv bindings and node js api" >
+               <p>(download and view  || try to view image in new tab for better understanding)</p>
+              </div>
+              <h3>1.The Node.js runtime starts executing the script</h3>
+              <h3>2.The require('node:os') statement is pushed onto the call stack. Node.js identifies it as a core module and loads the os module without searching in external files.</h3>
+              <h3>3.The console.log(os.type()) statement is pushed onto the call stack. Node.js detects the os.type() method call and delegates it to the node OS API.</h3>
+              <h3>4.Node.js identifies that os.type() refers to the getOSType function within the os module.
+              </h3>
+              <h3>5.The getOSType function in JavaScript retrieves the OS type by calling _getOSInformation() internally.</h3>
+              <h3>6._getOSInformation() is imported from internal bindings, which connect JavaScript code to C++ functions.</h3>
+              <h3>7.The JavaScript call to _getOSInformation() is mapped to the GetOSInformation() function in the Node.js C++ codebase.</h3>
+              <h3>8.The GetOSInformation() function interacts with the libuv library to retrieve OS-level information.</h3>
+              <h3>9.GetOSInformation() calls uv_os_uname() from the libuv library.</h3>
+              <h3>10.The uv_os_uname() function gathers OS-level data and returns it to the GetOSInformation() function.</h3>
+              <h3>11.This information is passed back from the C++ layer to the JavaScript layer.</h3>
+              <h3>12.The OS type (e.g., "Linux", "Windows_NT", "Darwin") is returned to the call stack and printed using console.log().</h3>
+              <h3>13.Once the output is displayed, the call stack is cleared, and the program exits</h3>
+              <br>
+              <h3>"Hope you enjoyed! Thank you for reading, and happy learning. If you have any doubts, feel free to email me at me@magnetonn.in."</h3>
+
+          </div>
+         
+     </div>
+
+     <footer class="footer">
+          
+      </footer>
+
+ 
+<script src="page.js"></script>
+
+</body>
+</html>

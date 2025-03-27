@@ -2,6 +2,8 @@ const body=document.body;
 const navigationComponent=document.querySelector('.navigationComponent')
 const themeBtn=document.querySelector('.theme-btn');
 const footer=document.querySelector('footer');
+
+
 let flag=0;
 
 // footer and navigation creator
@@ -39,8 +41,8 @@ function footerComponent(){
                <div class="connect">
                     <p>Connect with me </p>
                     <ul>
-                         <li><a href="http://"><i class="fa-brands fa-instagram"></i></a></li>
-                         <li><a href="http://"><i class="fa-solid fa-envelope"></i></a></li>
+                         <li><a href="https://www.instagram.com/__bateman.__/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                         <li><a href="mailto:me@magnetonn.in"><i class="fa-solid fa-envelope"></i></a></li>
                     </ul>
                </div>
                <div class="copyright">© 2024 Magneton.in. All Rights Reserved.</div>

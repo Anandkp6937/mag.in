@@ -89,6 +89,9 @@ a,li,ul{
      flex-direction: column;
      gap:.5em;
 }
+.dark{
+     font-weight:600;
+}
 .Flogo{
      font-weight:730;
      font-size:1.3em;
@@ -142,9 +145,42 @@ a,li,ul{
      padding-bottom:2em;
 }
 .image-banner img{
-     width:50%;
+     width:90%;
      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Simple shadow */
      border-radius:10px;
+}
+.dig{
+     width:100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     overflow: hidden;
+     height:auto;
+     /* background-color: yellow; */
+}
+.dig img{
+     width: 90%;
+     height:100%;
+     object-fit: contain;
+     border-radius:10px;
+}
+.normal-img-div{
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: center;
+}
+.normal-img{
+width:100%;
+}
+.italic{
+     font-style: italic;
+}
+.highlighter{
+     background-color:yellow;
+     padding:5px;
+     color:#000;
 }
 @media screen and (max-width:480px) {
      body{
@@ -155,8 +191,12 @@ a,li,ul{
      }
 
      .image-banner img{
-          width:60%;
+          width:90%;
      }
+     .dig img{
+          width:90%;  
+     }
+
      
 }
 @media screen and (min-width:700px) and (max-width:1024px){
@@ -170,13 +210,18 @@ a,li,ul{
      .image-container{
           width:40%;
      }
+     .dig img{
+          width:70%;
+     }
      .theme{
           margin-right:5em;
      }
      .image-banner{
           justify-content:center;
    }
-
+   .image-banner img{
+     width:60%;
+}
 }
 
 @media screen and (min-width:1024px) and (max-width:1624px){
@@ -196,6 +241,12 @@ body{
 .container-wrap{
      padding:0em 12em;
 }
+.dig img{
+     width:72%;
+}
+.image-banner img{
+     width:60%;
+}
 }
 @media screen and (min-width:1624px) {
      body{
@@ -208,6 +259,13 @@ body{
      }
      .image-container{
           width:40%;
+     }
+     .image-banner img{
+          width:50%;
+     }
+
+     .dig img{
+          width:60%;
      }
      .theme{
           margin-right:5em;
